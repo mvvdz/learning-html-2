@@ -1,44 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My first website</title>
-</head>
-<link rel="stylesheet" href="./css/style.css">
-<body"> <main class="site-container"></main></body>
-<main></main>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>My first website</title> 
+    <link rel="stylesheet" href="./css/style.css"> 
+</head> 
+<body>
 
-    yo this my webpage!!! im so tuff
-    <h2>MY webpage</h2>
-    <iframe src="https://theoldnet.com/" width="500" height="275" style="background-color: darkgray;"></iframe> 
-   <h3> What does this webpage have to offer??!</h3> 
-       <ul>
-        <li style="color: rgb(238, 255, 0);">Songs? YES!</li>
-        <li style="color: rgb(238, 255, 0);">Search? YES!</li>
-        <li style="color: rgb(238, 255, 0);">Search engine? YES!</li>
-        <li style="color: rgb(238, 255, 0);"><s>Photos</s> not yet..</li>
-        <li style="color: rgb(238, 255, 0);">Tacos? YES!!!!!!!</li>
-    </ul>
-    <img src="./gifs/tacos-space-tacos.gif" alt="Tacos in space"> 
-<H4>click the button for funny meme</H4>
-    <div>
-        <a href="https://media.tenor.com/jCXSe_0k8gUAAAAM/bro-thinks-hes-funny.gif" target="_blank" rel="noopener noreferrer">
-        <button style="background-color: darkgray;" >Funny!</button>
-        </a>
-    <a href="https://www.dingusland.fun/" target="_blank" rel="noopener noreferrer">link to the best website</a>
-    <a href="./pages/about.html">To about page</a>
+    <!-- Main Windows Application Box Container -->
+    <div class="win-window">
+        
+        <!-- Classic Blue Title Top Bar -->
+        <div class="win-title-bar">
+            <span class="win-title-text">🌐 DingusExplorer.exe</span>
+            <div class="win-title-buttons">
+                <button class="win-min-btn">_</button>
+                <button class="win-max-btn">🗖</button>
+                <button class="win-close-btn">X</button>
+            </div>
+        </div>
 
-    <form action="https://www.google.com/search" method="get"> 
-     
-        <button style="background-color: darkgray;" >search</button>
-    </form>
-    <audio style="color: darkgray;" autoplay src="./music/yo.mp3"></audio>
+        <!-- Grey App Workspace Window Body -->
+        <div class="win-body">
+            <p class="subtitle">yo this my webpage!!! im so tuff</p> 
+            <h2>MY webpage</h2> 
+
+            <!-- Embedded Frame Box Component -->
+            <div class="frame-container">
+                <iframe src="https://theoldnet.com" width="500" height="275"></iframe> 
+            </div>
+
+            <!-- Content Grouping Main Panel Box -->
+            <div class="content-box">
+                <h3>What does this webpage have to offer??!</h3> 
+                <ul class="features-list"> 
+                    <li>Songs? <span class="badge">YES!</span></li> 
+                    <li>Search? <span class="badge">YES!</span></li> 
+                    <li>Search engine? <span class="badge">YES!</span></li> 
+                    <li><s>Photos</s> <span class="badge disabled">not yet..</span></li> 
+                    <li>Videos? <span class="badge">YES!</span></li> 
+                </ul> 
+
+                <div class="media-element">
+                    <video controls src="./videos/IMG_0866.MP4"></video> 
+                </div>
+            </div>
+
+            <!-- Bottom Control Tray Controls -->
+            <div class="interactive-footer">
+                <h4>click the button for funny meme</h4> 
+                
+                <div class="btn-group">
+                    <a href="https://tenor.com" target="_blank" rel="noopener noreferrer"> 
+                        <button class="win-btn bold-text">Funny!</button> 
+                    </a> 
+                    <a href="https://dingusland.fun" target="_blank" rel="noopener noreferrer" class="web-link">link to the best website</a> 
+                    <a href="./pages/about.html" class="web-link">To about page</a> 
+                </div>
+
+                <form class="search-form"> 
+                    <label for="siteSearch">Search:</label> 
+                    <input id="siteSearch" type="text"> 
+                    <button type="submit" class="win-btn">search</button> 
+                </form> 
+
+                <!-- CUSTOM WINDOWS 95 AUDIO CONTROLLER COMPONENT -->
+                <!-- The actual browser player is hidden via CSS, these elements replace it -->
+                <audio id="audioTrack" src="./music/yo.mp3"></audio> 
+                
+                <div class="win-audio-player">
+                    <div class="player-title">Media Player</div>
+                    <div class="player-interface">
+                        <button id="btnPlay" class="win-btn bold-text">▶ Play</button>
+                        <div class="slider-container">
+                            <span id="timeCurrent" class="time-display">00:00</span>
+                            <input type="range" id="seekBar" class="win-slider" value="0">
+                        </div>
+                    </div>
+                </div>
+                <!-- END OF CUSTOM AUDIO CONTROLLER -->
+
+            </div>
+
+        </div>
     </div>
- 
-  <main class="page-content">
-   
-  </main>
 
-</body>
+    <!-- Retro script engine connecting your custom buttons to your hidden track file -->
+    <script>
+        const audio = document.getElementById('audioTrack');
+        const btnPlay = document.getElementById('btnPlay');
+        const seekBar = document.getElementById('seekBar');
+        const timeCurrent = document.getElementById('timeCurrent');
+
+        // Toggle media streaming play/pause states
+        btnPlay.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                btnPlay.textContent = '⏸ Pause';
+            } else {
+                audio.pause();
+                btnPlay.textContent = '▶ Play';
+            }
+        });
+
+        // Convert seconds to clean timestamps (00:00)
+        function formatTime(seconds) {
+            let min = Math.floor(seconds / 60);
+            let sec = Math.floor(seconds % 60);
+            if (sec < 10) sec = `0${sec}`;
+            if (min < 10) min = `0${min}`;
+            return `${min}:${sec}`;
+        }
+
+        // Initialize progress line track length
+        audio.addEventListener('loadedmetadata', () => {
+            seekBar.max = audio.duration;
+        });
+
+        // Sync slider thumb knob placement during active track playback
+        audio.addEventListener('timeupdate', () => {
+            seekBar.value = audio.currentTime;
+            timeCurrent.textContent = formatTime(audio.currentTime);
+        });
+
+        // Direct position skipping adjustments
+        seekBar.addEventListener('input', () => {
+            audio.currentTime = seekBar.value;
+        });
+    </script>
+</body> 
 </html>
