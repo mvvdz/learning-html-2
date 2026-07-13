@@ -7,24 +7,24 @@
         h3{
            color: rgb(194, 35, 173); 
         }
-/* 1. Reset defaults to prevent scrolling bugs */
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-/* 2. Turn the body into a full-screen centering flex container */
+
 body {
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically */
-  min-height: 100vh;       /* Makes the body exactly the height of the screen */
+  justify-content: center; 
+  align-items: center;    
+  min-height: 100vh;       
 }
 
-/* 3. Style your main content box */
+
 .page-content {
-  text-align: center;      /* Centers the text and buttons inside the box */
-  max-width: 600px;        /* Prevents the text from stretching too wide */
+  text-align: center;     
+  max-width: 600px;        
   padding: 20px;
 }
